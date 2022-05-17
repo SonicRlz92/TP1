@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+}
+body{
+    font-family: "Signika Negative";
+    font-size: 1.2rem;
+    min-height: 100%;
+}
+.grid-container > * {
+    border-radius: 1px;
+}
+.header{
+    grid-area: header;
+    background: rgb(7,200,146);
+    background: linear-gradient(90deg, rgba(7,200,146,1) 0%, rgba(0,212,255,1) 100%);
+    text-align: center;
+    width: 100%;
+    z-index: 999;
+}
+.logo{
+    font-family: 'Rock Salt', cursive;
+    font-size: 25px;
+    color: whitesmoke;
+}
+
+nav {
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background: rgb(7,200,146);
+    background: linear-gradient(90deg, rgba(7,200,146,1) 0%, rgba(0,212,255,1) 100%);
+    width: 100%;
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 400ms ease-in-out;
+    border-radius: 3px;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+nav li {
+    margin-left: 1em;
+    margin-top: 0.5em;
+    margin-bottom: 1.8em;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+}
+nav a {
+    color: whitesmoke;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+nav li a:hover{
+    color: #000;
+}
+.nav-toggle:checked ~ nav {
+    transform: scale(1,1);
+}
+.nav-toggle:checked ~ nav li {
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+}
+.nav-toggle{
+    display: none;
+}
+.nav-toggle-label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    margin-top: 1.3em;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    display: block;
+    background: white;
+    height: 3px;
+    width: 2em;
+    border-radius: 2px;
+    position: relative;
+}
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+    border-radius: 2px;
+}    
+.nav-toggle-label span::before {
+    bottom: 7px;
+}
+.nav-toggle-label span::after{
+    top: 7px;
+}
+.sidebar{
+    grid-area: sidebar;
+    background: rgb(154,67,245);
+    background: linear-gradient(151deg, rgba(154,67,245,1) 24%, rgba(5,193,217,1) 100%);
+    text-align: center;
+}
+.main{
+    grid-area: main;
+    text-align: center;
+}
+.gallery-container{
+    display: grid;
+    padding: 0 6px;
+    float: left;
+    width: 100%;
+    gap: 7px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+}
+.gallery-item{
+    border: 1px solid midnightblue;
+    border-radius: 3px;
+}
+.gallery-item:hover{
+    filter: opacity(0.9);
+    transform: scale(1.02);
+}
+.gallery-item img{
+    width: 100%;
+    height: auto;
+}
+.desc{
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.footer{
+    grid-area: footer;
+    background: rgb(7,200,146);
+    background: linear-gradient(90deg, rgba(7,200,146,1) 0%, rgba(0,212,255,1) 100%);
+    color: white;
+    text-align: center;
+    margin-bottom: 0;
+}
+footer > a {
+    color: white;
+    margin: 5px;
+}
+.grid-container{
+    display: grid;
+    gap: 5px;
+    width: 100%;
+    grid-template: 
+    "header" 70px
+    "sidebar" 190px
+    "main" auto
+    "footer" 60px;
+}
+
+@media only screen and (min-width: 600px){
+    .grid-container{
+        grid-template:
+        "header header" 70px
+        "sidebar main" auto
+        "footer footer" 60px /
+        25% auto;
+    }
+    .gallery-container{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        }
+}
+@media only screen and (min-width: 900px) {
+    .grid-container{
+        grid-template: 
+        "header header" 80px
+        "sidebar main" auto
+        "footer footer" 60px /
+        14% auto;
+    }
+    .gallery-container{
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+    }
+
+    .nav-toggle-label{
+        display: none;
+    }
+
+    .header{
+        display: grid;
+        grid-template-columns: 0.7fr auto minmax(600px, 3fr) 0.5fr;
+    }
+     .logo{
+         grid-column: 2 /span 1;
+         margin-top: 8px;
+     }
+
+     nav {
+         all: unset;
+         grid-column: 3 / 4;
+         display: flex;
+         justify-content: flex-end;
+         align-items: center;
+     }
+     nav ul{
+         display: flex;
+     }
+
+     nav li{
+         opacity: 1;
+         margin: 0 10px;
+     }
+}
